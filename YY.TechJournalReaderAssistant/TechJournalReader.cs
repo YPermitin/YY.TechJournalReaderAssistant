@@ -100,9 +100,9 @@ namespace YY.TechJournalReaderAssistant
                 while (true)
                 {
                     string sourceData = ReadSourceDataFromStream();
-                    if(sourceData != null)
+                    if (sourceData != null)
                         AddNewLineToSource(sourceData, true);
-                    
+
                     if (LogParserTechJournal.ItsEndOfEvent(_stream, sourceData) || sourceData == null)
                     {
                         _currentFileEventNumber += 1;
@@ -136,6 +136,10 @@ namespace YY.TechJournalReaderAssistant
                     }
                 }
             }
+            catch (FileNotFoundException)
+            {
+                output = false;
+            }
             catch (Exception ex)
             {
                 RaiseOnError(new OnErrorEventArgs(ex, null, true));
@@ -145,7 +149,6 @@ namespace YY.TechJournalReaderAssistant
 
             return output;
         }
-
         public bool GoToEvent(long eventNumber)
         {
             Reset();
