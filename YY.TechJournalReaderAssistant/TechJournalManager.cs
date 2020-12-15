@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using YY.TechJournalReaderAssistant.Models;
 
 namespace YY.TechJournalReaderAssistant
@@ -22,7 +23,9 @@ namespace YY.TechJournalReaderAssistant
                 }
                 else
                 {
-                    string[] techJournalSubDirectories = Directory.GetDirectories(logFilePath);
+                    string[] techJournalSubDirectories = Directory.GetDirectories(logFilePath)
+                        .OrderBy(i => i)
+                        .ToArray();
                     foreach (var techJournalSubDirectory in techJournalSubDirectories)
                     {
                         DirectoryInfo techJournalSubDirectoryInfo = new DirectoryInfo(techJournalSubDirectory);

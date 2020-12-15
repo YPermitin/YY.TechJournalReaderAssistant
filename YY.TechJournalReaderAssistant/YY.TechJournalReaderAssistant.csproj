@@ -23,4 +23,8 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="Models\RowDataVRSResponse.cs" />
+  </ItemGroup>
+
 </Project>

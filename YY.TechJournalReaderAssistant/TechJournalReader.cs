@@ -32,7 +32,7 @@ namespace YY.TechJournalReaderAssistant
         private readonly bool _logFileSourcePathIsDirectory;
         private long _eventCount = -1;
 
-        private RowData _currentRow;
+        private EventData _currentRow;
 
         #endregion
 
@@ -48,7 +48,7 @@ namespace YY.TechJournalReaderAssistant
                 return _logFilesWithData[_indexCurrentFile];
             }
         }
-        public RowData CurrentRow => _currentRow;
+        public EventData CurrentRow => _currentRow;
 
         #endregion
 
@@ -120,7 +120,7 @@ namespace YY.TechJournalReaderAssistant
 
                         try
                         {
-                            RowData eventData = ReadRowData(preparedSourceData);
+                            EventData eventData = ReadRowData(preparedSourceData);
                             _currentRow = eventData;
                             RaiseAfterRead(new AfterReadEventArgs(_currentRow, _currentFileEventNumber));
                             output = true;
@@ -266,9 +266,9 @@ namespace YY.TechJournalReaderAssistant
 
         #region Private Memthods
 
-        private RowData ReadRowData(string sourceData)
+        private EventData ReadRowData(string sourceData)
         {
-            RowData eventData = LogParserTechJournal.Parse(sourceData, CurrentFile);
+            EventData eventData = LogParserTechJournal.Parse(sourceData, CurrentFile);
             return eventData;
         }
         private void AddNewLineToSource(string sourceData, bool newLine)

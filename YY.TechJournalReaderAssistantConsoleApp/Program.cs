@@ -13,7 +13,6 @@ namespace YY.TechJournalReaderAssistantConsoleApp
         private static int _eventNumber;
         private static DateTime _lastPeriodEvent = DateTime.MinValue;
         private static TechJournalDirectory _lastLogDirectory;
-
         private static Dictionary<string, TechJournalPosition> _lastPositions =
             new Dictionary<string, TechJournalPosition>();
 
@@ -31,11 +30,13 @@ namespace YY.TechJournalReaderAssistantConsoleApp
                 TechJournalManager tjManager = new TechJournalManager(dataDirectoryPath);
                 foreach (var tjDirectory in tjManager.Directories)
                 {
+                    if(!tjDirectory.DirectoryData.Exists)
+                        continue;
+                    
                     _lastLogDirectory = tjDirectory;
                     TechJournalPosition lastPosition = null;
-                    string logDirectoryId = $"{_lastLogDirectory.ProcessName}-{_lastLogDirectory.ProcessId}";
-                    if (_lastPositions.ContainsKey(logDirectoryId))
-                        lastPosition = _lastPositions[logDirectoryId];
+                    if (_lastPositions.ContainsKey(tjDirectory.DirectoryData.Name))
+                        lastPosition = _lastPositions[tjDirectory.DirectoryData.Name];
 
                     using (TechJournalReader tjReader = TechJournalReader.CreateReader(tjDirectory.DirectoryData.FullName))
                     {
@@ -73,37 +74,32 @@ namespace YY.TechJournalReaderAssistantConsoleApp
             Console.WriteLine($"{DateTime.Now}: [{_lastLogDirectory}] {_eventNumber}");
             Console.WriteLine($"{DateTime.Now}: [{_lastLogDirectory}] {_lastPeriodEvent}");
         }
-
         private static void Reader_AfterReadFile(TechJournalReader sender, AfterReadFileEventArgs args)
         {
             TechJournalPosition currentPosition = sender.GetCurrentPosition();
-            string logDirectoryId = $"{_lastLogDirectory.ProcessName}-{_lastLogDirectory.ProcessId}";
-            if (_lastPositions.ContainsKey(logDirectoryId))
-                _lastPositions[logDirectoryId] = sender.GetCurrentPosition();
+            if (_lastPositions.ContainsKey(_lastLogDirectory.DirectoryData.Name))
+                _lastPositions[_lastLogDirectory.DirectoryData.Name] = sender.GetCurrentPosition();
             else
-                _lastPositions.Add(logDirectoryId, sender.GetCurrentPosition());
+                _lastPositions.Add(_lastLogDirectory.DirectoryData.Name, sender.GetCurrentPosition());
             
             Console.WriteLine($"{DateTime.Now}: [{_lastLogDirectory}] Окончание чтения файла \"{args.FileName}\"");
             Console.WriteLine();
         }
-
         private static void Reader_BeforeReadEvent(TechJournalReader sender, BeforeReadEventArgs args)
         {
             Console.SetCursorPosition(0, Console.CursorTop - 2);
             Console.WriteLine($"{DateTime.Now}: [{_lastLogDirectory}] (+){_eventNumber}");
             Console.WriteLine($"{DateTime.Now}: [{_lastLogDirectory}] {_lastPeriodEvent}");
         }
-
         private static void Reader_AfterReadEvent(TechJournalReader sender, AfterReadEventArgs args)
         {
-            if (args.RowData != null)
-                _lastPeriodEvent = args.RowData.Period;
+            if (args.EventData != null)
+                _lastPeriodEvent = args.EventData.Period;
 
             Console.SetCursorPosition(0, Console.CursorTop - 2);
             Console.WriteLine($"{DateTime.Now}: [{_lastLogDirectory}] [+]{_eventNumber}");
             Console.WriteLine($"{DateTime.Now}: [{_lastLogDirectory}] {_lastPeriodEvent}");
         }
-
         private static void Reader_OnErrorEvent(TechJournalReader sender, OnErrorEventArgs args)
         {
             Console.WriteLine($"{DateTime.Now}: [{_lastLogDirectory}] Ошибка чтения логов \"{args.Exception}\"");

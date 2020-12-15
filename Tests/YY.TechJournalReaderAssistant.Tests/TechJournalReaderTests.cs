@@ -21,8 +21,8 @@ namespace YY.TechJournalReaderAssistant.Tests
             ZipFile.ExtractToDirectory(logArchive, logDataPath);
 
             int eventNumber = 0;
-            RowData lastRow = null;
-            List<RowData> allRows = new List<RowData>();
+            EventData lastRow = null;
+            List<EventData> allRows = new List<EventData>();
 
             TechJournalManager tjManager = new TechJournalManager(logDataPath);
             foreach (var tjDirectory in tjManager.Directories)

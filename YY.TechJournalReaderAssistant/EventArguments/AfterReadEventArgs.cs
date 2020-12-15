@@ -5,13 +5,13 @@ namespace YY.TechJournalReaderAssistant.EventArguments
 {
     public sealed class AfterReadEventArgs : EventArgs
     {
-        public AfterReadEventArgs(RowData rowData, long eventNumber)
+        public AfterReadEventArgs(EventData rowData, long eventNumber)
         {
-            RowData = rowData;
+            EventData = rowData;
             EventNumber = eventNumber;
         }
 
-        public RowData RowData { get; }
+        public EventData EventData { get; }
         public long EventNumber { get; }
     }    
 }

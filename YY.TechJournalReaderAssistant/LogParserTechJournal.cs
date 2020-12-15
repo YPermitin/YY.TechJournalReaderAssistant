@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -13,10 +14,7 @@ namespace YY.TechJournalReaderAssistant
 
         public static bool ItsBeginOfEvent(string sourceString)
         {
-            if (sourceString == null)
-                return false;
-
-            return Regex.IsMatch(sourceString, @"^\d\d:\d\d.\d\d\d\d(\d\d)?-");
+            return sourceString != null && Regex.IsMatch(sourceString, @"^\d\d:\d\d.\d\d\d\d(\d\d)?-");
         }
         public static bool ItsEndOfEvent(StreamReader stream, string sourceString)
         {
@@ -29,12 +27,10 @@ namespace YY.TechJournalReaderAssistant
             else
                 return false;
         }
-        public static RowData Parse(string originEventSource, string currentFile)
+        public static EventData Parse(string originEventSource, string currentFile)
         {
             string bufferEventSource = String.Copy(originEventSource);
-
-            RowData dataRow = new RowData();
-
+            EventData dataRow = new EventData();
             FileInfo currentFileInfo = new FileInfo(currentFile);
             string dateFromFileAsString = currentFileInfo.Name.Replace(".log", string.Empty);
 
@@ -51,15 +47,15 @@ namespace YY.TechJournalReaderAssistant
                 int.Parse(periodAsString.Substring(3, 2))
             ).AddMilliseconds(periodMilliseconds);
 
-            bool isFormat_8_3 = periodAsString.Length == 12;
-            if (isFormat_8_3)
+            bool isFormat83 = periodAsString.Length == 12;
+            if (isFormat83)
                 dataRow.PeriodMoment = long.Parse(periodAsString.Substring(6, 6));
             else
                 dataRow.PeriodMoment = long.Parse(periodAsString.Substring(6, 4)) * 100;
 
             int indexEndOfDuration = bufferEventSource.IndexOf(',');
             string durationAsString = bufferEventSource.Substring(indexEndOfDate + 1, indexEndOfDuration - indexEndOfDate - 1);
-            dataRow.Duration = long.Parse(durationAsString) * (isFormat_8_3 ? 10 : 100);
+            dataRow.Duration = long.Parse(durationAsString) * (isFormat83 ? 10 : 100);
 
             bufferEventSource = bufferEventSource.Substring(indexEndOfDuration + 1, bufferEventSource.Length - indexEndOfDuration - 1);
             int indexEndOfEventName = bufferEventSource.IndexOf(',');
