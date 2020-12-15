@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using YY.TechJournalReaderAssistant.Models;
+using YY.TechJournalReaderAssistant.Models.DBMS;
 
 namespace YY.TechJournalReaderAssistant.Helpers
 {

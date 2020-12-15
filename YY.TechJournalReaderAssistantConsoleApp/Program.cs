@@ -76,7 +76,6 @@ namespace YY.TechJournalReaderAssistantConsoleApp
         }
         private static void Reader_AfterReadFile(TechJournalReader sender, AfterReadFileEventArgs args)
         {
-            TechJournalPosition currentPosition = sender.GetCurrentPosition();
             if (_lastPositions.ContainsKey(_lastLogDirectory.DirectoryData.Name))
                 _lastPositions[_lastLogDirectory.DirectoryData.Name] = sender.GetCurrentPosition();
             else
