@@ -9,78 +9,18 @@ namespace YY.TechJournalReaderAssistant.Models.DBMS
         private static readonly Regex _replaceTempTableName = new Regex(@"#tt[\d]+");
         private static readonly Regex _replaceParameterName = new Regex(@"@P[\d]+");
 
-        private static string _sqlQueryOnly;
-        private static string _sqlQueryParametersOnly;
+        private string _sqlQueryOnly;
+        private string _sqlQueryParametersOnly;
 
-        public bool? LKA
-        {
-            get
-            {
-                if (Properties.ContainsKey("lka")
-                    && bool.TryParse(Properties["lka"], out var lkaValue))
-                    return lkaValue;
-
-                return null;
-            }
-        }
-        public int? LKAID
-        {
-            get
-            {
-                if (Properties.ContainsKey("lkaid")
-                    && int.TryParse(Properties["lkaid"], out var lkaIdValue))
-                    return lkaIdValue;
-
-                return null;
-            }
-        }
-        public int? LKATO
-        {
-            get
-            {
-                if (Properties.ContainsKey("lkato")
-                    && int.TryParse(Properties["lkato"], out var lkaIdValue))
-                    return lkaIdValue;
-
-                return null;
-            }
-        }
-        public bool? LKP
-        {
-            get
-            {
-                if (Properties.ContainsKey("lkp")
-                    && bool.TryParse(Properties["lkp"], out var lkaValue))
-                    return lkaValue;
-
-                return null;
-            }
-        }
-        public string LKPID => Properties.ContainsKey("lkpid") ? Properties["lkpid"] : null;
-        public int? LKPTO
-        {
-            get
-            {
-                if (Properties.ContainsKey("lkpto")
-                    && int.TryParse(Properties["lkpto"], out var lkaIdValue))
-                    return lkaIdValue;
-
-                return null;
-            }
-        }
-        public int? LKSRC
-        {
-            get
-            {
-                if (Properties.ContainsKey("lksrc")
-                    && int.TryParse(Properties["lksrc"], out var lkaIdValue))
-                    return lkaIdValue;
-
-                return null;
-            }
-        }
-        public string PlanSQLText => Properties.ContainsKey("planSQLText") ? Properties["planSQLText"] : null;
-        public string SQLText => Properties.ContainsKey("sql") ? Properties["sql"] : null;
+        public bool? LKA => Properties.GetBoolValueByKey("LKA");
+        public long? LKAID => Properties.GetLongValueByKey("LKAID");
+        public long? LKATO => Properties.GetLongValueByKey("LKATO");
+        public bool? LKP => Properties.GetBoolValueByKey("LKP");
+        public string LKPID => Properties.GetStringValueByKey("LKPID");
+        public long? LKPTO => Properties.GetLongValueByKey("LKPTO");
+        public long? LKSRC => Properties.GetLongValueByKey("LKSRC");
+        public string PlanSQLText => Properties.GetStringValueByKey("PLANSQLTEXT");
+        public string SQLText => Properties.GetStringValueByKey("SQL");
         public string SQLQueryOnly
         {
             get

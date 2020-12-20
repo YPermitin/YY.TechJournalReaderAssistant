@@ -1,11 +1,13 @@
+using YY.TechJournalReaderAssistant.Helpers;
+
 namespace YY.TechJournalReaderAssistant.Models.Errors
 {
     public class EventEXCP : EventData
     {
-        public string Description => Properties.ContainsKey("descr") ? Properties["descr"] : null;
-        public string DumpError => Properties.ContainsKey("dumperror") ? Properties["dumperror"] : null;
-        public string DumpFile => Properties.ContainsKey("dumpfile") ? Properties["dumpfile"] : null;
-        public string Exception => Properties.ContainsKey("exception") ? Properties["exception"] : null;
-        public string OSException => Properties.ContainsKey("osexception") ? Properties["osexception"] : null;
+        public string Description => Properties.GetStringValueByKey("DESCR");
+        public string DumpError => Properties.GetStringValueByKey("DUMPERROR");
+        public string DumpFile => Properties.GetStringValueByKey("DUMPFILE");
+        public string Exception => Properties.GetStringValueByKey("EXCEPTION");
+        public string OSException => Properties.GetStringValueByKey("OSEXCEPTION");
     }
 }

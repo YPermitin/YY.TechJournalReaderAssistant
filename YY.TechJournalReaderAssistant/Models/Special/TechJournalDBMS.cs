@@ -1,4 +1,4 @@
-namespace YY.TechJournalReaderAssistant.Models.DBMS
+namespace YY.TechJournalReaderAssistant.Models.Special
 {
     public enum TechJournalDBMS
     {

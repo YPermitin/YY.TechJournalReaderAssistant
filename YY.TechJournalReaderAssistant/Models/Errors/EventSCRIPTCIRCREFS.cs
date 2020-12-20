@@ -1,8 +1,10 @@
+using YY.TechJournalReaderAssistant.Helpers;
+
 namespace YY.TechJournalReaderAssistant.Models.Errors
 {
-    public class EventSCRIPTCIRCREFS : EventData
+    public class EventMAILPARSEERR : EventData
     {
-        public string Cycles => Properties.ContainsKey("cycles") ? Properties["cycles"] : null;
-        public string ModuleName => Properties.ContainsKey("ModuleName") ? Properties["ModuleName"] : null;
+        public string Cycles => Properties.GetStringValueByKey("CYCLES");
+        public string ModuleName => Properties.GetStringValueByKey("MODULENAME");
     }
 }

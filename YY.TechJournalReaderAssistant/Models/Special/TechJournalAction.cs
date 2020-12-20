@@ -1,4 +1,4 @@
-namespace YY.TechJournalReaderAssistant.Models
+namespace YY.TechJournalReaderAssistant.Models.Special
 {
     public enum TechJournalAction
     {

@@ -4,6 +4,7 @@ using System.Threading;
 using YY.TechJournalReaderAssistant;
 using YY.TechJournalReaderAssistant.EventArguments;
 using YY.TechJournalReaderAssistant.Models;
+using YY.TechJournalReaderAssistant.Models.DBMS;
 
 namespace YY.TechJournalReaderAssistantConsoleApp
 {
@@ -94,6 +95,8 @@ namespace YY.TechJournalReaderAssistantConsoleApp
         {
             if (args.EventData != null)
                 _lastPeriodEvent = args.EventData.Period;
+
+            var sqlEvent = args.EventData.AsEvent<EventDBMSSQL>();
 
             Console.SetCursorPosition(0, Console.CursorTop - 2);
             Console.WriteLine($"{DateTime.Now}: [{_lastLogDirectory}] [+]{_eventNumber}");

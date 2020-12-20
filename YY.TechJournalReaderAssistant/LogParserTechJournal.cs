@@ -72,7 +72,7 @@ namespace YY.TechJournalReaderAssistant
 
             while (indexOfDelimeter > 0)
             {
-                string paramName = bufferEventSource.Substring(0, indexOfDelimeter);
+                string paramName = bufferEventSource.Substring(0, indexOfDelimeter).ToUpper();
                 string valueAsString = string.Empty;
 
                 bufferEventSource = bufferEventSource.Substring(indexOfDelimeter + 1);
