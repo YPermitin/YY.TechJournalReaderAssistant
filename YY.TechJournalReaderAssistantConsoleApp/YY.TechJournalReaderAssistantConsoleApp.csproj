@@ -3,6 +3,16 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <PackageVersion>1.0.0.1</PackageVersion>
+    <Title>Tech journal reader assistant</Title>
+    <Authors>Permitin Yuriy</Authors>
+    <Description>Simple application for reading 1C:Enterprise 8.x platform's tech journal log files</Description>
+    <Copyright>Copyright (c) 2020 Permitin Yury</Copyright>
+    <PackageProjectUrl>https://github.com/YPermitin/YY.TechJournalReaderAssistant</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/YPermitin/YY.TechJournalReaderAssistant/blob/main/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/YPermitin/YY.TechJournalReaderAssistant</RepositoryUrl>
+    <RepositoryType>GIT</RepositoryType>
+    <PackageTags>1C, tech, journal, log, reader</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>

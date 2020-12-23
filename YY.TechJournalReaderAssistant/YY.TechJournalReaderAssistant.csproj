@@ -5,8 +5,8 @@
     <Authors>Permitin Yuriy</Authors>
     <Product>Technological journal's reader assistant</Product>
     <Description>Library for reading 1C:Enterprise 8.x platform's technological journal files</Description>
-    <Version>1.0.0.1</Version>
-    <AssemblyVersion>1.0.0.1</AssemblyVersion>
+    <Version>1.0.0.3</Version>
+    <AssemblyVersion>1.0.0.3</AssemblyVersion>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/YPermitin/YY.TechJournalReaderAssistant</PackageProjectUrl>
     <RepositoryUrl>https://github.com/YPermitin/YY.TechJournalReaderAssistant</RepositoryUrl>
@@ -21,6 +21,14 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Models\RowDataVRSResponse.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 
 </Project>

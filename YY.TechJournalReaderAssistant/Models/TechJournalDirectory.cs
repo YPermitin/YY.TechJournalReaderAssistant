@@ -37,10 +37,6 @@ namespace YY.TechJournalReaderAssistant.Models
 
         #region Constructors
 
-        private TechJournalDirectory()
-        {
-
-        }
         public TechJournalDirectory(string directoryPath)
         {
             if (File.GetAttributes(directoryPath).HasFlag(FileAttributes.Directory))
