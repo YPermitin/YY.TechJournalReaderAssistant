@@ -81,18 +81,18 @@ namespace YY.TechJournalReaderAssistant.Models
         };
         protected static readonly List<string> _commonProperties = new List<string>()
         {
-            "p:processName",
-            "process",
-            "t:applicationName",
-            "t:computerName",
-            "t:connectID",
-            "Context",
-            "Usr",
-            "func",
-            "Database",
-            "DBCopy",
-            "dbms",
-            "dbpid"
+            "P:PROCESSNAME",
+            "PROCESS",
+            "T:APPLICATIONNAME",
+            "T:COMPUTERNAME",
+            "T:CONNECTID",
+            "CONTEXT",
+            "USR",
+            "FUNC",
+            "DATABASE",
+            "DBCOPY",
+            "DBMS",
+            "DBPID"
         };
 
         #endregion
