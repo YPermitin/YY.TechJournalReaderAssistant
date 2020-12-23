@@ -11,12 +11,7 @@ namespace YY.TechJournalReaderAssistant.Models.DBMS
 
         private string _sqlQueryOnly;
         private string _sqlQueryParametersOnly;
-
-        public EventDBMSSQL(EventData data)
-        {
-            _eventData = data;
-        }
-
+        
         public bool? LKA => Properties.GetBoolValueByKey("LKA");
         public long? LKAID => Properties.GetLongValueByKey("LKAID");
         public long? LKATO => Properties.GetLongValueByKey("LKATO");
@@ -32,9 +27,9 @@ namespace YY.TechJournalReaderAssistant.Models.DBMS
         {
             get
             {
-                if (_sqlQueryOnly == null && _eventData.Properties.ContainsKey("Sql"))
+                if (_sqlQueryOnly == null)
                 {
-                    string bufferSql = (string)_eventData.Properties["Sql"].Clone();
+                    string bufferSql = (string)Properties["Sql"].Clone();
                     int endOfQuery = bufferSql.IndexOf("p_0", StringComparison.Ordinal);
                     _sqlQueryOnly = bufferSql.Substring(0, endOfQuery);
                 }
@@ -46,9 +41,9 @@ namespace YY.TechJournalReaderAssistant.Models.DBMS
         {
             get
             {
-                if (_sqlQueryParametersOnly == null && _eventData.Properties.ContainsKey("Sql"))
+                if (_sqlQueryParametersOnly == null && Properties.ContainsKey("Sql"))
                 {
-                    string bufferSql = (string)_eventData.Properties["Sql"].Clone();
+                    string bufferSql = (string)Properties["Sql"].Clone();
                     int endOfQuery = bufferSql.IndexOf("p_0", StringComparison.Ordinal);
                     int lengthOfParams = bufferSql.Length - endOfQuery;
                     _sqlQueryParametersOnly = bufferSql.Substring(endOfQuery, lengthOfParams);
