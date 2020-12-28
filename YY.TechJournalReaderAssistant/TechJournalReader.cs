@@ -93,11 +93,13 @@ namespace YY.TechJournalReaderAssistant
                     return Read();
                 }
 
+                bool newLine = true;
+
                 while (true)
                 {
                     string sourceData = ReadSourceDataFromStream();
                     if (sourceData != null)
-                        AddNewLineToSource(sourceData, true);
+                        AddNewLineToSource(sourceData, newLine);
 
                     if (LogParserTechJournal.ItsEndOfEvent(_stream, sourceData) || sourceData == null)
                     {
@@ -130,6 +132,7 @@ namespace YY.TechJournalReaderAssistant
                             break;
                         }
                     }
+                    newLine = false;
                 }
             }
             catch (FileNotFoundException)
