@@ -4,7 +4,9 @@ using System.IO;
 using Xunit;
 using System.IO.Compression;
 using System.Linq;
+using YY.TechJournalReaderAssistant.Helpers;
 using YY.TechJournalReaderAssistant.Models;
+using YY.TechJournalReaderAssistant.Models.Special;
 
 namespace YY.TechJournalReaderAssistant.Tests
 {
@@ -44,6 +46,14 @@ namespace YY.TechJournalReaderAssistant.Tests
             Assert.Equal(3113, eventNumber);
             Assert.Equal(new DateTime(2020, 8, 18, 15, 22, 06).AddMilliseconds(356), minPeriod);
             Assert.Equal(new DateTime(2020, 8, 18, 16, 02, 34).AddMilliseconds(817), maxPeriod);
+        }
+
+        [Fact]
+        public void Test_TechJournalActionExtensions()
+        {
+            var someDescription = TechJournalAction.changeInfoBaseParams.GetDescription();
+
+            Assert.NotEmpty(someDescription);
         }
     }
 }
