@@ -106,7 +106,7 @@ namespace YY.TechJournalReaderAssistant.Models
 
         #region Public Static Methods
 
-        public static EventData Create(string originEventSource, string currentFile)
+        public static EventData Create(string originEventSource, string currentFile, long eventId)
         {
             string bufferEventSource = String.Copy(originEventSource);
             FileInfo currentFileInfo = new FileInfo(currentFile);
@@ -145,6 +145,7 @@ namespace YY.TechJournalReaderAssistant.Models
             if (!_eventObjectTypes.TryGetValue(eventNameKey, out eventObjectType))
                 eventObjectType = typeof(EventData);
             EventData dataRow = (EventData)Activator.CreateInstance(eventObjectType);
+            dataRow.Id = eventId;
 
             dataRow.Period = eventPeriod;
             dataRow.PeriodMoment = periodMoment;
@@ -258,6 +259,7 @@ namespace YY.TechJournalReaderAssistant.Models
         #region Public Members
 
         public DateTime Period { set; get; }
+        public long Id { set; get; }
         public long PeriodMoment { set; get; }
         public int Level { set; get; }
         public long Duration { set; get; }

@@ -264,7 +264,7 @@ namespace YY.TechJournalReaderAssistant
 
         private EventData ReadRowData(string sourceData)
         {
-            EventData eventData = LogParserTechJournal.Parse(sourceData, CurrentFile);
+            EventData eventData = LogParserTechJournal.Parse(sourceData, CurrentFile, _currentFileEventNumber);
             return eventData;
         }
         private void AddNewLineToSource(string sourceData, bool newLine)

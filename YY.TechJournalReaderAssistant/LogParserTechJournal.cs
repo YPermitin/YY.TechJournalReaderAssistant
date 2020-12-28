@@ -24,9 +24,9 @@ namespace YY.TechJournalReaderAssistant
             else
                 return false;
         }
-        public static EventData Parse(string originEventSource, string currentFile)
+        public static EventData Parse(string originEventSource, string currentFile, long eventId)
         {
-            return EventData.Create(originEventSource, currentFile);
+            return EventData.Create(originEventSource, currentFile, eventId);
         }
 
         #endregion
