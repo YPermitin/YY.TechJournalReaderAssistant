@@ -7,7 +7,7 @@
 ### Состояние сборки
 | Windows |  Linux |
 |:-------:|:------:|
-| NONE | ![.NET Core](https://github.com/YPermitin/YY.TechJournalReaderAssistant/workflows/.NET%20Core/badge.svg) |
+| [![Build status](https://ci.appveyor.com/api/projects/status/leo16jd0ho2u4v0l?svg=true)](https://ci.appveyor.com/project/YPermitin/yy-techjournalreaderassistant) | ![.NET Core](https://github.com/YPermitin/YY.TechJournalReaderAssistant/workflows/.NET%20Core/badge.svg) |
 
 ## Благодарности
 
