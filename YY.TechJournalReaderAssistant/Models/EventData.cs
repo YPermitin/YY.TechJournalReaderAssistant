@@ -331,6 +331,7 @@ namespace YY.TechJournalReaderAssistant.Models
         }
         public string SDBL => Properties.GetStringValueByKey("SDBL");
         public string Description => Properties.GetStringValueByKey("DESCR");
+        public string Message => Properties.GetStringValueByKey("TXT");
         public Dictionary<string, string> Properties { set; get; }
 
         #endregion

@@ -9,6 +9,5 @@ namespace YY.TechJournalReaderAssistant.Models.ClusterAndServer
         public long? MainPort => Properties.GetLongValueByKey("PORT");
         public string RunAs => Properties.GetStringValueByKey("RUNAS");
         public long? SecondPort => Properties.GetLongValueByKey("SYNCPORT");
-        public string Message => Properties.GetStringValueByKey("TXT");
     }
 }

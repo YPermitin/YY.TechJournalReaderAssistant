@@ -7,6 +7,5 @@ namespace YY.TechJournalReaderAssistant.Models.Licensing
     {
         public string StateValue => Properties.GetStringValueByKey("RES");
         public TechJournalLicensingState State => TechJournalLicensingStateExtensions.Parse(StateValue);
-        public string Text => Properties.GetStringValueByKey("TXT");
     }
 }
