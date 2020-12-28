@@ -113,21 +113,13 @@ namespace YY.TechJournalReaderAssistant.Helpers {
 			},
 			{
 				TechJournalAction.eraseAgentUser,
-				"Удаление пользователя центрального сервера"
+				"Удаление пользователя / администратора центрального сервера"
 			},
-			{
-				TechJournalAction.eraseAgentUser,
-				"Удаление администратора центрального сервера"
-			},
-			{
+            {
 				TechJournalAction.eraseIBRegistry,
 				"Удаление кластера из центрального сервера"
 			},
-			{
-				TechJournalAction.eraseIBRegistry,
-				"Удаление кластера"
-			},
-			{
+            {
 				TechJournalAction.eraseRegServer,
 				"Удаление рабочего сервера"
 			},
