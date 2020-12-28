@@ -22,7 +22,6 @@ namespace YY.TechJournalReaderAssistant
 
         #region Private Member Variables
 
-        private readonly string _logFilePath;
         private readonly string _logFileDirectoryPath;
         private string[] _logFilesWithData;
         private int _indexCurrentFile;
@@ -65,15 +64,12 @@ namespace YY.TechJournalReaderAssistant
                 _logFileDirectoryPath = logFilePath;
                 _logFileSourcePathIsDirectory = true;
                 UpdateEventLogFilesFromDirectory();
-                if (_logFilesWithData.Length > 0)
-                    _logFilePath = _logFilesWithData[0];
             }
             else
             {
                 _logFileSourcePathIsDirectory = false;
                 _logFilesWithData = new[] { logFilePath };
-                _logFilePath = _logFilesWithData[0];
-                _logFileDirectoryPath = new FileInfo(_logFilePath).Directory?.FullName;
+                _logFileDirectoryPath = new FileInfo(_logFilesWithData[0]).Directory?.FullName;
             }
         }
 

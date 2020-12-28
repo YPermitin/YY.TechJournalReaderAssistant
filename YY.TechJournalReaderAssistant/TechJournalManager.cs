@@ -11,6 +11,23 @@ namespace YY.TechJournalReaderAssistant
 
         public TechJournalManager(string logFilePath)
         {
+            int readDirectoryAttempts = 1;
+            while (readDirectoryAttempts <= 3)
+            {
+                try
+                {
+                    FillTechLogDirectories(logFilePath);
+                    break;
+                }
+                catch (DirectoryNotFoundException)
+                {
+                    readDirectoryAttempts += 1;
+                }
+            }
+        }
+
+        private void FillTechLogDirectories(string logFilePath)
+        {
             Directories = new List<TechJournalDirectory>();
 
             if (File.GetAttributes(logFilePath).HasFlag(FileAttributes.Directory))

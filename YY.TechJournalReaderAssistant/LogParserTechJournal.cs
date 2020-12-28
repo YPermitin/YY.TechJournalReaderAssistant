@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Text.RegularExpressions;
 using YY.TechJournalReaderAssistant.Helpers;
 using YY.TechJournalReaderAssistant.Models;

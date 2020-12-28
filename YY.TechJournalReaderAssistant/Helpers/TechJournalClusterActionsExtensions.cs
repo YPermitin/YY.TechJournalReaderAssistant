@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using YY.TechJournalReaderAssistant.Models;
 using YY.TechJournalReaderAssistant.Models.Special;
 
 namespace YY.TechJournalReaderAssistant.Helpers
 {
     public static class TechJournalClusterActionsExtensions
     {
-        private static Dictionary<TechJournalClusterActions, string> _techJournalClusterActionsPresentations = new Dictionary<TechJournalClusterActions, string>()
+        private static readonly Dictionary<TechJournalClusterActions, string> _techJournalClusterActionsPresentations = new Dictionary<TechJournalClusterActions, string>()
         {
             { TechJournalClusterActions.CurrentVersionNewer, "Активный экземпляр сервиса получил репликацию со старой версией состояния сервиса и отверг ее" },
             { TechJournalClusterActions.CurrentVersionOlder, "Активный экземпляр сервиса получил репликацию с новой версией состояния сервиса, он должен стать резервным" },
@@ -27,7 +26,7 @@ namespace YY.TechJournalReaderAssistant.Helpers
             { TechJournalClusterActions.Unknown, "Неизвестно" }
         };
 
-        private static Dictionary<string, TechJournalClusterActions> _techJournalClusterActionsAsStringValues = new Dictionary<string, TechJournalClusterActions>()
+        private static readonly Dictionary<string, TechJournalClusterActions> _techJournalClusterActionsAsStringValues = new Dictionary<string, TechJournalClusterActions>()
         {
             { "CURRENVERSIONNEWER", TechJournalClusterActions.CurrentVersionNewer },
             { "CURRENTVERSIONOLDER", TechJournalClusterActions.CurrentVersionOlder },
