@@ -94,7 +94,7 @@ namespace YY.TechJournalReaderAssistantConsoleApp
         {
             if (args.EventData != null)
                 _lastPeriodEvent = args.EventData.Period;
-
+            
             Console.SetCursorPosition(0, Console.CursorTop - 2);
             Console.WriteLine($"{DateTime.Now}: [{_lastLogDirectory}] [+]{_eventNumber}");
             Console.WriteLine($"{DateTime.Now}: [{_lastLogDirectory}] {_lastPeriodEvent}");

@@ -297,9 +297,9 @@ namespace YY.TechJournalReaderAssistant.Models
         {
             get
             {
-                if (_sqlQueryOnly == null && Properties.ContainsKey("Sql"))
+                if (_sqlQueryOnly == null && Properties.ContainsKey("SQL"))
                 {
-                    string bufferSql = (string)Properties["Sql"].Clone();
+                    string bufferSql = (string)Properties["SQL"].Clone();
                     int endOfQuery = bufferSql.IndexOf("p_0", StringComparison.Ordinal);
                     _sqlQueryOnly = bufferSql.Substring(0, endOfQuery);
                 }
@@ -311,9 +311,9 @@ namespace YY.TechJournalReaderAssistant.Models
         {
             get
             {
-                if (_sqlQueryParametersOnly == null && Properties.ContainsKey("Sql"))
+                if (_sqlQueryParametersOnly == null && Properties.ContainsKey("SQL"))
                 {
-                    string bufferSql = (string)Properties["Sql"].Clone();
+                    string bufferSql = (string)Properties["SQL"].Clone();
                     int endOfQuery = bufferSql.IndexOf("p_0", StringComparison.Ordinal);
                     int lengthOfParams = bufferSql.Length - endOfQuery;
                     _sqlQueryParametersOnly = bufferSql.Substring(endOfQuery, lengthOfParams);
