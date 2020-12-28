@@ -33,13 +33,9 @@ namespace YY.TechJournalReaderAssistant.Helpers {
 			},
 			{
 				TechJournalAction.authenticateSrvrUser,
-				"Аутентификация пользователя кластера в рабочем сервере"
+				"Аутентификация пользователя / администратора кластера в рабочем сервере"
 			},
-			{
-				TechJournalAction.authenticateSrvrUser,
-				"Аутентификация администратора кластера в рабочем процессе"
-			},
-			{
+            {
 				TechJournalAction.authenticateStarter,
 				"Аутентификация удаленного центрального сервера"
 			},
