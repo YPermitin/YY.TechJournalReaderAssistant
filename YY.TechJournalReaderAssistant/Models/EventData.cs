@@ -32,7 +32,7 @@ namespace YY.TechJournalReaderAssistant.Models
     {
         #region Private Static Members
 
-        private static Dictionary<string, Type> _eventObjectTypes = new Dictionary<string, Type>()
+        private static readonly Dictionary<string, Type> _eventObjectTypes = new Dictionary<string, Type>()
         {
             { "DBMSSQLCONN", typeof(EventDBMSSQLCONN) },
             { "DB2", typeof(EventDB2) },
@@ -93,7 +93,14 @@ namespace YY.TechJournalReaderAssistant.Models
             "DATABASE",
             "DBCOPY",
             "DBMS",
-            "DBPID"
+            "DBPID",
+            "PLANSQLTEXT",
+            "ROWS",
+            "ROWSAFFECTED",
+            "SQL",
+            "SDBL",
+            "DESCR",
+            "TXT"
         };
 
         private static readonly Regex _replaceTempTableName = new Regex(@"#tt[\d]+");
