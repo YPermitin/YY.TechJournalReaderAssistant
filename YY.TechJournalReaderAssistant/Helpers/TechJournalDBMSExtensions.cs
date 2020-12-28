@@ -1,13 +1,12 @@
 using System;
 using System.Collections.Generic;
-using YY.TechJournalReaderAssistant.Models.DBMS;
 using YY.TechJournalReaderAssistant.Models.Special;
 
 namespace YY.TechJournalReaderAssistant.Helpers
 {
     public static class TechJournalDBMSExtensions
     {
-        private static Dictionary<TechJournalDBMS, string> _dbmsPresentation = new Dictionary<TechJournalDBMS, string>()
+        private static readonly Dictionary<TechJournalDBMS, string> _dbmsPresentation = new Dictionary<TechJournalDBMS, string>()
         {
             { TechJournalDBMS.None, "Отсутствует" },
             { TechJournalDBMS.Unknown, "Неизвестно" },

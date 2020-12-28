@@ -4,7 +4,6 @@ using System.Threading;
 using YY.TechJournalReaderAssistant;
 using YY.TechJournalReaderAssistant.EventArguments;
 using YY.TechJournalReaderAssistant.Models;
-using YY.TechJournalReaderAssistant.Models.DBMS;
 
 namespace YY.TechJournalReaderAssistantConsoleApp
 {

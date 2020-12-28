@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using YY.TechJournalReaderAssistant.Helpers;
 using YY.TechJournalReaderAssistant.Models.CallsAndContext;
@@ -95,11 +96,17 @@ namespace YY.TechJournalReaderAssistant.Models
             "DBPID"
         };
 
+        private static readonly Regex _replaceTempTableName = new Regex(@"#tt[\d]+");
+        private static readonly Regex _replaceParameterName = new Regex(@"@P[\d]+");
+
+        private string _sqlQueryOnly;
+        private string _sqlQueryParametersOnly;
+
         #endregion
 
         #region Public Static Methods
 
-        public static EventData Create(string originEventSource, string currentFile)
+        public static EventData Create(string originEventSource, string currentFile, long eventId)
         {
             string bufferEventSource = String.Copy(originEventSource);
             FileInfo currentFileInfo = new FileInfo(currentFile);
@@ -138,6 +145,7 @@ namespace YY.TechJournalReaderAssistant.Models
             if (!_eventObjectTypes.TryGetValue(eventNameKey, out eventObjectType))
                 eventObjectType = typeof(EventData);
             EventData dataRow = (EventData)Activator.CreateInstance(eventObjectType);
+            dataRow.Id = eventId;
 
             dataRow.Period = eventPeriod;
             dataRow.PeriodMoment = periodMoment;
@@ -251,6 +259,7 @@ namespace YY.TechJournalReaderAssistant.Models
         #region Public Members
 
         public DateTime Period { set; get; }
+        public long Id { set; get; }
         public long PeriodMoment { set; get; }
         public int Level { set; get; }
         public long Duration { set; get; }
@@ -273,6 +282,58 @@ namespace YY.TechJournalReaderAssistant.Models
         public string DBMSValue => Properties.GetStringValueByKey("DBMS");
         public TechJournalDBMS DBMS => TechJournalDBMSExtensions.Parse(DBMSValue);
         public string DatabasePID => Properties.GetStringValueByKey("DBPID");
+        public string PlanSQLText => Properties.GetStringValueByKey("PLANSQLTEXT");
+        public long? Rows => Properties.GetLongValueByKey("ROWS");
+        public long? RowsAffected => Properties.GetLongValueByKey("ROWSAFFECTED");
+        public string SQLText => Properties.GetStringValueByKey("SQL");
+        public string SQLQueryOnly
+        {
+            get
+            {
+                if (_sqlQueryOnly == null && Properties.ContainsKey("Sql"))
+                {
+                    string bufferSql = (string)Properties["Sql"].Clone();
+                    int endOfQuery = bufferSql.IndexOf("p_0", StringComparison.Ordinal);
+                    _sqlQueryOnly = bufferSql.Substring(0, endOfQuery);
+                }
+
+                return _sqlQueryOnly;
+            }
+        }
+        public string SQLQueryParametersOnly
+        {
+            get
+            {
+                if (_sqlQueryParametersOnly == null && Properties.ContainsKey("Sql"))
+                {
+                    string bufferSql = (string)Properties["Sql"].Clone();
+                    int endOfQuery = bufferSql.IndexOf("p_0", StringComparison.Ordinal);
+                    int lengthOfParams = bufferSql.Length - endOfQuery;
+                    _sqlQueryParametersOnly = bufferSql.Substring(endOfQuery, lengthOfParams);
+                }
+
+                return _sqlQueryParametersOnly;
+            }
+        }
+        public string SQLQueryHash
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(SQLQueryOnly))
+                {
+                    string bufferSql = (string)SQLQueryOnly.Clone();
+                    _replaceParameterName.Replace(bufferSql, bufferSql);
+                    _replaceTempTableName.Replace(bufferSql, bufferSql);
+                    bufferSql = bufferSql.Replace(" ", "");
+                    return bufferSql.CreateMD5();
+                }
+
+                return null;
+            }
+        }
+        public string SDBL => Properties.GetStringValueByKey("SDBL");
+        public string Description => Properties.GetStringValueByKey("DESCR");
+        public string Message => Properties.GetStringValueByKey("TXT");
         public Dictionary<string, string> Properties { set; get; }
 
         #endregion

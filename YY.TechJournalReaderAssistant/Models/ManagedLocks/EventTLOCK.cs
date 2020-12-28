@@ -4,7 +4,6 @@ namespace YY.TechJournalReaderAssistant.Models.ManagedLocks
 {
     public class EventTLOCK : EventData
     {
-        public string Description => Properties.GetStringValueByKey("DESCR");
         public string Error => Properties.GetStringValueByKey("ERROR");
         public string Exception => Properties.GetStringValueByKey("EXCEPTION");
         public string Locks => Properties.GetStringValueByKey("LOCKS");

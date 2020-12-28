@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Text.RegularExpressions;
 using YY.TechJournalReaderAssistant.Helpers;
 using YY.TechJournalReaderAssistant.Models;
@@ -26,9 +24,9 @@ namespace YY.TechJournalReaderAssistant
             else
                 return false;
         }
-        public static EventData Parse(string originEventSource, string currentFile)
+        public static EventData Parse(string originEventSource, string currentFile, long eventId)
         {
-            return EventData.Create(originEventSource, currentFile);
+            return EventData.Create(originEventSource, currentFile, eventId);
         }
 
         #endregion

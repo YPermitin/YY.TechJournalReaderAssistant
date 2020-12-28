@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using YY.TechJournalReaderAssistant.Models;
+﻿using YY.TechJournalReaderAssistant.Models;
 
 namespace YY.TechJournalReaderAssistant
 {

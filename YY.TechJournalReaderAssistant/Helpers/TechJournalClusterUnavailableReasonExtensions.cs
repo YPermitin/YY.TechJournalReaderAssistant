@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using YY.TechJournalReaderAssistant.Models;
 using YY.TechJournalReaderAssistant.Models.Special;
 
 namespace YY.TechJournalReaderAssistant.Helpers
 {
     public static class TechJournalClusterUnavailableReasonExtensions
     {
-        private static Dictionary<TechJournalClusterUnavailableReason, string> _techJournalClusterUnavailableReasonPresentations = new Dictionary<TechJournalClusterUnavailableReason, string>()
+        private static readonly Dictionary<TechJournalClusterUnavailableReason, string> _techJournalClusterUnavailableReasonPresentations = new Dictionary<TechJournalClusterUnavailableReason, string>()
         {
             { TechJournalClusterUnavailableReason.connlimit, "Достигнуто максимальное количество соединений на рабочий процесс" },
             { TechJournalClusterUnavailableReason.iblimit, "Достигнуто максимальное количество ИБ на рабочий процесс" },
@@ -18,8 +17,7 @@ namespace YY.TechJournalReaderAssistant.Helpers
         {
             if (_techJournalClusterUnavailableReasonPresentations.TryGetValue(reason, out string presentation))
                 return presentation;
-            else
-                return _techJournalClusterUnavailableReasonPresentations[TechJournalClusterUnavailableReason.Unknown];
+            return _techJournalClusterUnavailableReasonPresentations[TechJournalClusterUnavailableReason.Unknown];
         }
         public static TechJournalClusterUnavailableReason Parse(string reason)
         {
