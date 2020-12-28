@@ -1,0 +1,12 @@
+version: 1.0.0.{build}
+configuration: Release
+image:
+- Visual Studio 2019
+
+build_script:
+- ps: >-
+    .\Scripts\appveyor-build.ps1
+
+test_script:
+- ps: >-
+    .\Scripts\appveyor-runTests.ps1
