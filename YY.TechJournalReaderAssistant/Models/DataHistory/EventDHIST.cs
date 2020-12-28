@@ -4,6 +4,6 @@ namespace YY.TechJournalReaderAssistant.Models.DataHistory
 {
     public class EventDHIST : EventData
     {
-        public string Description => Properties.GetStringValueByKey("DESCRIPTION");
+        public string DataHistoryDescription => Properties.GetStringValueByKey("DESCRIPTION");
     }
 }
