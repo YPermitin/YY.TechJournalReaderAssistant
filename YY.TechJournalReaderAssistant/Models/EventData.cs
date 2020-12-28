@@ -301,7 +301,10 @@ namespace YY.TechJournalReaderAssistant.Models
                 {
                     string bufferSql = (string)Properties["SQL"].Clone();
                     int endOfQuery = bufferSql.IndexOf("p_0", StringComparison.Ordinal);
-                    _sqlQueryOnly = bufferSql.Substring(0, endOfQuery);
+                    if (endOfQuery > 0)
+                        _sqlQueryOnly = bufferSql.Substring(0, endOfQuery);
+                    else
+                        _sqlQueryOnly = bufferSql;
                 }
 
                 return _sqlQueryOnly;
@@ -315,8 +318,12 @@ namespace YY.TechJournalReaderAssistant.Models
                 {
                     string bufferSql = (string)Properties["SQL"].Clone();
                     int endOfQuery = bufferSql.IndexOf("p_0", StringComparison.Ordinal);
-                    int lengthOfParams = bufferSql.Length - endOfQuery;
-                    _sqlQueryParametersOnly = bufferSql.Substring(endOfQuery, lengthOfParams);
+                    if (endOfQuery > 0)
+                    {
+                        int lengthOfParams = bufferSql.Length - endOfQuery;
+                        if(lengthOfParams > 0)
+                            _sqlQueryParametersOnly = bufferSql.Substring(endOfQuery, lengthOfParams);
+                    }
                 }
 
                 return _sqlQueryParametersOnly;

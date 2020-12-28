@@ -5,8 +5,8 @@
     <Authors>Permitin Yuriy</Authors>
     <Product>Technological journal's reader assistant</Product>
     <Description>Library for reading 1C:Enterprise 8.x platform's technological journal files</Description>
-    <Version>1.0.0.9</Version>
-    <AssemblyVersion>1.0.0.9</AssemblyVersion>
+    <Version>1.0.0.10</Version>
+    <AssemblyVersion>1.0.0.10</AssemblyVersion>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/YPermitin/YY.TechJournalReaderAssistant</PackageProjectUrl>
     <RepositoryUrl>https://github.com/YPermitin/YY.TechJournalReaderAssistant</RepositoryUrl>
