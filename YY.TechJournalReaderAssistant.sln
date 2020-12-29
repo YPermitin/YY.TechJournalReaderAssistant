@@ -26,6 +26,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nuget", "Nuget", "{11E276EC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{67DDACBF-1C91-4AA5-9133-BC6FB2ACC76B}"
 	ProjectSection(SolutionItems) = preProject
+		Scripts\appveyor-build.ps1 = Scripts\appveyor-build.ps1
+		Scripts\appveyor-runTests.ps1 = Scripts\appveyor-runTests.ps1
 		Scripts\deploy.sh = Scripts\deploy.sh
 	EndProjectSection
 EndProject

@@ -25,6 +25,9 @@
     <None Update="TestData\TestData_ServerAndClusterLogs.zip">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="TestData\TestData_SpecialCases.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

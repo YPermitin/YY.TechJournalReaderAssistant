@@ -4,9 +4,7 @@ using System.IO;
 using Xunit;
 using System.IO.Compression;
 using System.Linq;
-using YY.TechJournalReaderAssistant.Helpers;
 using YY.TechJournalReaderAssistant.Models;
-using YY.TechJournalReaderAssistant.Models.Special;
 
 namespace YY.TechJournalReaderAssistant.Tests
 {
@@ -49,11 +47,32 @@ namespace YY.TechJournalReaderAssistant.Tests
         }
 
         [Fact]
-        public void Test_TechJournalActionExtensions()
+        public void Test_ReadSpecialCases()
         {
-            var someDescription = TechJournalAction.changeInfoBaseParams.GetDescription();
+            string unitTestDirectory = Directory.GetCurrentDirectory();
 
-            Assert.NotEmpty(someDescription);
+            string logArchive = Path.Combine(unitTestDirectory, "TestData", "TestData_SpecialCases.zip");
+            string logDataPath = Path.Combine(unitTestDirectory, "TestData", "TestData_SpecialCases");
+            if (Directory.Exists(logDataPath)) Directory.Delete(logDataPath, true);
+            ZipFile.ExtractToDirectory(logArchive, logDataPath);
+
+            int eventNumber = 0;
+            EventData firstRow = null;
+
+            TechJournalManager tjManager = new TechJournalManager(logDataPath);
+            foreach (var tjDirectory in tjManager.Directories)
+            {
+                TechJournalReader tjReader = TechJournalReader.CreateReader(tjDirectory.DirectoryData.FullName);
+                if (tjReader.Read())
+                {
+                    eventNumber += 1;
+                    firstRow = tjReader.CurrentRow;
+                }
+            }
+
+            Assert.NotNull(firstRow);
+            Assert.NotEqual(0, eventNumber);
+            Assert.Equal(4, firstRow.Properties.Count(e => e.Key.StartsWith("T:CLIENTID")));
         }
     }
 }
