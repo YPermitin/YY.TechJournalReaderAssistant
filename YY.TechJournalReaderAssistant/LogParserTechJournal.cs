@@ -102,7 +102,7 @@ namespace YY.TechJournalReaderAssistant
             else
                 return false;
         }
-        public static EventData Parse(string originEventSource, string currentFile, long eventId)
+        public static EventData Parse(string originEventSource, string currentFile, long eventId, TimeZoneInfo timeZone)
         {
             string bufferEventSource = String.Copy(originEventSource);
             FileInfo currentFileInfo = new FileInfo(currentFile);
@@ -136,14 +136,14 @@ namespace YY.TechJournalReaderAssistant
             int indexEndOfEventName = bufferEventSource.IndexOf(',');
             string eventName = bufferEventSource.Substring(0, indexEndOfEventName);
 
-            Type eventObjectType;
             string eventNameKey = eventName.ToUpper();
-            if (!_eventObjectTypes.TryGetValue(eventNameKey, out eventObjectType))
+            if (!_eventObjectTypes.TryGetValue(eventNameKey, out var eventObjectType))
                 eventObjectType = typeof(EventData);
             EventData dataRow = (EventData)Activator.CreateInstance(eventObjectType);
             dataRow.Id = eventId;
 
             dataRow.Period = eventPeriod;
+            dataRow.PeriodUTC = TimeZoneInfo.ConvertTimeToUtc(dataRow.Period, timeZone ?? TimeZoneInfo.Local);
             dataRow.PeriodMoment = periodMoment;
             dataRow.Duration = duration;
             dataRow.EventName = eventName;

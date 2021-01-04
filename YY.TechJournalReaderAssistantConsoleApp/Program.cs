@@ -95,11 +95,6 @@ namespace YY.TechJournalReaderAssistantConsoleApp
             if (args.EventData != null)
                 _lastPeriodEvent = args.EventData.Period;
 
-            var v1 = args.EventData.SQLText;
-            var v2 = args.EventData.SQLQueryHash;
-            var v3 = args.EventData.SQLQueryOnly;
-            var v4 = args.EventData.SQLQueryParametersOnly;
-
             Console.SetCursorPosition(0, Console.CursorTop - 2);
             Console.WriteLine($"{DateTime.Now}: [{_lastLogDirectory}] [+]{_eventNumber}");
             Console.WriteLine($"{DateTime.Now}: [{_lastLogDirectory}] {_lastPeriodEvent}");

@@ -17,21 +17,23 @@ namespace YY.TechJournalReaderAssistant
         {
             return new TechJournalReader(pathLogFile);
         }
-        
+
         #endregion
 
         #region Private Member Variables
 
-        private readonly string _logFileDirectoryPath;
-        private string[] _logFilesWithData;
-        private int _indexCurrentFile;
-        private long _currentFileEventNumber;
-        private StreamReader _stream;
-        private readonly StringBuilder _eventSource;
-        private readonly bool _logFileSourcePathIsDirectory;
-        private long _eventCount = -1;
+        protected readonly string _logFileDirectoryPath;
+        protected string[] _logFilesWithData;
+        protected int _indexCurrentFile;
+        protected long _currentFileEventNumber;
+        protected StreamReader _stream;
+        protected readonly StringBuilder _eventSource;
+        protected readonly bool _logFileSourcePathIsDirectory;
+        protected long _eventCount = -1;
+        protected TimeZoneInfo _logTimeZoneInfo;
+        protected int _readDelayMs = 60000;
 
-        private EventData _currentRow;
+        protected EventData _currentRow;
 
         #endregion
 
@@ -53,11 +55,10 @@ namespace YY.TechJournalReaderAssistant
 
         #region Constructor
 
-        internal TechJournalReader()
-        { }
         internal TechJournalReader(string logFilePath)
         {
             _eventSource = new StringBuilder();
+            _logTimeZoneInfo = TimeZoneInfo.Local;
 
             if (File.GetAttributes(logFilePath).HasFlag(FileAttributes.Directory))
             {
@@ -94,6 +95,7 @@ namespace YY.TechJournalReaderAssistant
                 }
 
                 bool newLine = true;
+                DateTime maxLogPeriod = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, _logTimeZoneInfo).AddMilliseconds((-1) * _readDelayMs);
 
                 while (true)
                 {
@@ -119,10 +121,19 @@ namespace YY.TechJournalReaderAssistant
                         try
                         {
                             EventData eventData = ReadRowData(preparedSourceData);
-                            _currentRow = eventData;
-                            RaiseAfterRead(new AfterReadEventArgs(_currentRow, _currentFileEventNumber));
-                            output = true;
-                            break;
+                            if (eventData.Period >= maxLogPeriod)
+                            {
+                                _currentRow = null;
+                                output = false;
+                                break;
+                            }
+                            else
+                            {
+                                _currentRow = eventData;
+                                RaiseAfterRead(new AfterReadEventArgs(_currentRow, _currentFileEventNumber));
+                                output = true;
+                                break;
+                            }
                         }
                         catch (Exception ex)
                         {
@@ -137,6 +148,7 @@ namespace YY.TechJournalReaderAssistant
             }
             catch (FileNotFoundException)
             {
+                _currentRow = null;
                 output = false;
             }
             catch (Exception ex)
@@ -252,6 +264,18 @@ namespace YY.TechJournalReaderAssistant
 
             _indexCurrentFile += 1;
         }
+        public void SetTimeZone(TimeZoneInfo timeZone)
+        {
+            _logTimeZoneInfo = timeZone;
+        }
+        public TimeZoneInfo GetTimeZone()
+        {
+            return _logTimeZoneInfo;
+        }
+        public virtual void SetDelayMs(int delay)
+        {
+            _readDelayMs = delay;
+        }
         public void Dispose()
         {
             if (_stream != null)
@@ -267,7 +291,7 @@ namespace YY.TechJournalReaderAssistant
 
         private EventData ReadRowData(string sourceData)
         {
-            EventData eventData = LogParserTechJournal.Parse(sourceData, CurrentFile, _currentFileEventNumber);
+            EventData eventData = LogParserTechJournal.Parse(sourceData, CurrentFile, _currentFileEventNumber, _logTimeZoneInfo);
             return eventData;
         }
         private void AddNewLineToSource(string sourceData, bool newLine)

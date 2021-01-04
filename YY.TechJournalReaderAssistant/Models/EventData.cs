@@ -46,9 +46,9 @@ namespace YY.TechJournalReaderAssistant.Models
 
         #region Public Static Methods
 
-        public static EventData Create(string originEventSource, string currentFile, long eventId)
+        public static EventData Create(string originEventSource, string currentFile, long eventId, TimeZoneInfo timeZone)
         {
-            return LogParserTechJournal.Parse(originEventSource, currentFile, eventId);
+            return LogParserTechJournal.Parse(originEventSource, currentFile, eventId, timeZone);
         }
 
         #endregion
@@ -65,6 +65,7 @@ namespace YY.TechJournalReaderAssistant.Models
         #region Public Members
 
         public DateTime Period { set; get; }
+        public DateTime PeriodUTC { get; set; }
         public long Id { set; get; }
         public long PeriodMoment { set; get; }
         public int Level { set; get; }
@@ -166,8 +167,8 @@ namespace YY.TechJournalReaderAssistant.Models
         }
         public virtual T AsEvent<T>() where T : EventData, IEventData
         {
-            if (this is T)
-                return (T) this;
+            if (this is T t)
+                return t;
             return null;
         }
 
