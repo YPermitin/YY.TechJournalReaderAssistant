@@ -24,7 +24,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="TestData\" />
+    <Compile Update="TestData\ClearSQLQuery.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ClearSQLQuery.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="TestData\ClearSQLQuery.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ClearSQLQuery.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>

@@ -1,10 +1,53 @@
-﻿using System.Security.Cryptography;
+﻿using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 
+[assembly: InternalsVisibleTo("YY.TechJournalReaderAssistant.Tests")]
 namespace YY.TechJournalReaderAssistant.Helpers
 {
     internal static class StringExtensions
     {
+        private static readonly Regex _replaceTempTableName = new Regex(@"#tt[\d]+");
+        private static readonly Regex _replaceParameterName = new Regex(@"@P([\d]|[N])+");
+        private static readonly Regex _replaceSQLParametersForSELECT = new Regex(@"\((@P([\d]|[N])|\?)+[\W\w]+\)(|\n)SELECT");
+        private static readonly Regex _replaceSQLParametersForINSERT = new Regex(@"\((@P([\d]|[N])|\?)+[\W\w]+\)(|\n)INSERT");
+        private static readonly Regex _replaceSQLParametersForUPDATE = new Regex(@"\((@P([\d]|[N])|\?)+[\W\w]+\)(|\n)UPDATE");
+        private static readonly Regex _replaceSQLParametersForDELETE = new Regex(@"\((@P([\d]|[N])|\?)+[\W\w]+\)(|\n)DELETE");
+
+        public static string ClearSQLQuery(this string sourceQuery, 
+            bool changeTempTableNames = true,
+            bool changeSQLParameterNames = true,
+            bool removeSQLParametersPart = true)
+        {
+            if(changeTempTableNames) 
+                sourceQuery = _replaceTempTableName.Replace(sourceQuery, "#ttN");
+
+            if(changeSQLParameterNames)
+                sourceQuery = _replaceParameterName.Replace(sourceQuery, "?");
+
+            if (removeSQLParametersPart)
+            {
+                sourceQuery = _replaceSQLParametersForSELECT.Replace(sourceQuery, "SELECT");
+                sourceQuery = _replaceSQLParametersForINSERT.Replace(sourceQuery, "INSERT");
+                sourceQuery = _replaceSQLParametersForUPDATE.Replace(sourceQuery, "UPDATE");
+                sourceQuery = _replaceSQLParametersForDELETE.Replace(sourceQuery, "DELETE");
+            }
+
+            return sourceQuery;
+        }
+        public static string GetQueryHash(this string sourceQuery, bool isQueryFromDBMS = false)
+        {
+            if(isQueryFromDBMS)
+                sourceQuery = sourceQuery.ClearSQLQuery();
+            else
+                sourceQuery = sourceQuery.ClearSQLQuery(true, false, false);
+
+            sourceQuery = sourceQuery.Replace(" ", "");
+            sourceQuery = sourceQuery.Replace("\r", "");
+            sourceQuery = sourceQuery.Replace("\n", "");
+            return sourceQuery.CreateMD5();
+        }
         public static string CreateMD5(this string input)
         {
             using (MD5 md5 = MD5.Create())

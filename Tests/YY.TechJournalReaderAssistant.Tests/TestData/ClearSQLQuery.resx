@@ -1,0 +1,292 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="QueryFromSQLServerExtendedEvents" xml:space="preserve">
+    <value>(@PN varbinary(4),@PN varbinary(4),@PN varbinary(16),@PN varbinary(4),@PN varbinary(4),@PN varbinary(16),@PN varbinary(4),@PN varbinary(4),@PN varbinary(16),@PN varbinary(4),@PN varbinary(4),@PN varbinary(16),@PN varbinary(4),@PN varbinary(4),@PN varbinary(16),@PN varbinary(4),@PN varbinary(4),@PN varbinary(16),@PN varbinary(4),@PN varbinary(4),@PN varbinary(16),@PN varbinary(4),@PN varbinary(4),@PN varbinary(16),@PN varbinary(4),@PN varbinary(4),@PN varbinary(16),@PN varbinary(4),@PN varbinary(4),@PN varbinary(16),@PN varbinary(4),@PN varbinary(4),@PN varbinary(16),@PN varbinary(4),@PN varbinary(4),@PN varbinary(16))SELECT
+@PN,
+T1._IDRRef
+FROM _DocumentChngR15 T1 WITH(NOLOCK)
+LEFT OUTER JOIN _Document1 T2 WITH(NOLOCK)
+ON T1._IDRRef = T2._IDRRef
+WHERE (T1._NodeTRef = @PN AND T1._NodeRRef = @PN) AND T2._Number IS NULL
+UNION ALL SELECT
+@PN,
+T3._IDRRef
+FROM _DocumentChngR08 T3 WITH(NOLOCK)
+LEFT OUTER JOIN _Document2 T4 WITH(NOLOCK)
+ON T3._IDRRef = T4._IDRRef
+WHERE (T3._NodeTRef = @PN AND T3._NodeRRef = @PN) AND T4._Number IS NULL
+UNION ALL SELECT
+@PN,
+T5._IDRRef
+FROM _DocumentChngR06 T5 WITH(NOLOCK)
+LEFT OUTER JOIN _Document3 T6 WITH(NOLOCK)
+ON T5._IDRRef = T6._IDRRef
+WHERE (T5._NodeTRef = @PN AND T5._NodeRRef = @PN) AND T6._Number IS NULL
+UNION ALL SELECT
+@PN,
+T7._IDRRef
+FROM _DocumentChngR07 T7 WITH(NOLOCK)
+LEFT OUTER JOIN _Document4 T8 WITH(NOLOCK)
+ON T7._IDRRef = T8._IDRRef
+WHERE (T7._NodeTRef = @PN AND T7._NodeRRef = @PN) AND T8._Number IS NULL
+UNION ALL SELECT
+@PN,
+T9._IDRRef
+FROM _DocumentChngR10 T9 WITH(NOLOCK)
+LEFT OUTER JOIN _Document5 T10 WITH(NOLOCK)
+ON T9._IDRRef = T10._IDRRef
+WHERE (T9._NodeTRef = @PN AND T9._NodeRRef = @PN) AND T10._Number IS NULL
+UNION ALL SELECT
+@PN,
+T11._IDRRef
+FROM _DocumentChngR11 T11 WITH(NOLOCK)
+LEFT OUTER JOIN _Document6 T12 WITH(NOLOCK)
+ON T11._IDRRef = T12._IDRRef
+WHERE (T11._NodeTRef = @PN AND T11._NodeRRef = @PN) AND T12._Number IS NULL
+UNION ALL SELECT
+@PN,
+T13._IDRRef
+FROM _DocumentChngR13 T13 WITH(NOLOCK)
+LEFT OUTER JOIN _Document7 T14 WITH(NOLOCK)
+ON T13._IDRRef = T14._IDRRef
+WHERE (T13._NodeTRef = @PN AND T13._NodeRRef = @PN) AND T14._Number IS NULL
+UNION ALL SELECT
+@PN,
+T15._IDRRef
+FROM _DocumentChngR09 T15 WITH(NOLOCK)
+LEFT OUTER JOIN _Document8 T16 WITH(NOLOCK)
+ON T15._IDRRef = T16._IDRRef
+WHERE (T15._NodeTRef = @PN AND T15._NodeRRef = @PN) AND T16._Number IS NULL
+UNION ALL SELECT
+@PN,
+T17._IDRRef
+FROM _DocumentChngR17 T17 WITH(NOLOCK)
+LEFT OUTER JOIN _Document9 T18 WITH(NOLOCK)
+ON T17._IDRRef = T18._IDRRef
+WHERE (T17._NodeTRef = @PN AND T17._NodeRRef = @PN) AND T18._Number IS NULL
+UNION ALL SELECT
+@PN,
+T19._IDRRef
+FROM _DocumentChngR12 T19 WITH(NOLOCK)
+LEFT OUTER JOIN _Document10 T20 WITH(NOLOCK)
+ON T19._IDRRef = T20._IDRRef
+WHERE (T19._NodeTRef = @PN AND T19._NodeRRef = @PN) AND T20._Number IS NULL
+UNION ALL SELECT
+@PN,
+T21._IDRRef
+FROM _DocumentChngR16 T21 WITH(NOLOCK)
+LEFT OUTER JOIN _Document11 T22 WITH(NOLOCK)
+ON T21._IDRRef = T22._IDRRef
+WHERE (T21._NodeTRef = @PN AND T21._NodeRRef = @PN) AND T22._Number IS NULL
+UNION ALL SELECT
+@PN,
+T23._IDRRef
+FROM _DocumentChngR14 T23 WITH(NOLOCK)
+LEFT OUTER JOIN _Document12 T24 WITH(NOLOCK)
+ON T23._IDRRef = T24._IDRRef
+WHERE (T23._NodeTRef = @PN AND T23._NodeRRef = @PN) AND T24._Number IS NULL</value>
+  </data>
+  <data name="QueryFromTechJournal" xml:space="preserve">
+    <value>SELECT
+?,
+T1._IDRRef
+FROM _DocumentChngR15 T1 WITH(NOLOCK)
+LEFT OUTER JOIN _Document1 T2 WITH(NOLOCK)
+ON T1._IDRRef = T2._IDRRef
+WHERE (T1._NodeTRef = ? AND T1._NodeRRef = ?) AND T2._Number IS NULL
+UNION ALL SELECT
+?,
+T3._IDRRef
+FROM _DocumentChngR08 T3 WITH(NOLOCK)
+LEFT OUTER JOIN _Document2 T4 WITH(NOLOCK)
+ON T3._IDRRef = T4._IDRRef
+WHERE (T3._NodeTRef = ? AND T3._NodeRRef = ?) AND T4._Number IS NULL
+UNION ALL SELECT
+?,
+T5._IDRRef
+FROM _DocumentChngR06 T5 WITH(NOLOCK)
+LEFT OUTER JOIN _Document3 T6 WITH(NOLOCK)
+ON T5._IDRRef = T6._IDRRef
+WHERE (T5._NodeTRef = ? AND T5._NodeRRef = ?) AND T6._Number IS NULL
+UNION ALL SELECT
+?,
+T7._IDRRef
+FROM _DocumentChngR07 T7 WITH(NOLOCK)
+LEFT OUTER JOIN _Document4 T8 WITH(NOLOCK)
+ON T7._IDRRef = T8._IDRRef
+WHERE (T7._NodeTRef = ? AND T7._NodeRRef = ?) AND T8._Number IS NULL
+UNION ALL SELECT
+?,
+T9._IDRRef
+FROM _DocumentChngR10 T9 WITH(NOLOCK)
+LEFT OUTER JOIN _Document5 T10 WITH(NOLOCK)
+ON T9._IDRRef = T10._IDRRef
+WHERE (T9._NodeTRef = ? AND T9._NodeRRef = ?) AND T10._Number IS NULL
+UNION ALL SELECT
+?,
+T11._IDRRef
+FROM _DocumentChngR11 T11 WITH(NOLOCK)
+LEFT OUTER JOIN _Document6 T12 WITH(NOLOCK)
+ON T11._IDRRef = T12._IDRRef
+WHERE (T11._NodeTRef = ? AND T11._NodeRRef = ?) AND T12._Number IS NULL
+UNION ALL SELECT
+?,
+T13._IDRRef
+FROM _DocumentChngR13 T13 WITH(NOLOCK)
+LEFT OUTER JOIN _Document7 T14 WITH(NOLOCK)
+ON T13._IDRRef = T14._IDRRef
+WHERE (T13._NodeTRef = ? AND T13._NodeRRef = ?) AND T14._Number IS NULL
+UNION ALL SELECT
+?,
+T15._IDRRef
+FROM _DocumentChngR09 T15 WITH(NOLOCK)
+LEFT OUTER JOIN _Document8 T16 WITH(NOLOCK)
+ON T15._IDRRef = T16._IDRRef
+WHERE (T15._NodeTRef = ? AND T15._NodeRRef = ?) AND T16._Number IS NULL
+UNION ALL SELECT
+?,
+T17._IDRRef
+FROM _DocumentChngR17 T17 WITH(NOLOCK)
+LEFT OUTER JOIN _Document9 T18 WITH(NOLOCK)
+ON T17._IDRRef = T18._IDRRef
+WHERE (T17._NodeTRef = ? AND T17._NodeRRef = ?) AND T18._Number IS NULL
+UNION ALL SELECT
+?,
+T19._IDRRef
+FROM _DocumentChngR12 T19 WITH(NOLOCK)
+LEFT OUTER JOIN _Document10 T20 WITH(NOLOCK)
+ON T19._IDRRef = T20._IDRRef
+WHERE (T19._NodeTRef = ? AND T19._NodeRRef = ?) AND T20._Number IS NULL
+UNION ALL SELECT
+?,
+T21._IDRRef
+FROM _DocumentChngR16 T21 WITH(NOLOCK)
+LEFT OUTER JOIN _Document11 T22 WITH(NOLOCK)
+ON T21._IDRRef = T22._IDRRef
+WHERE (T21._NodeTRef = ? AND T21._NodeRRef = ?) AND T22._Number IS NULL
+UNION ALL SELECT
+?,
+T23._IDRRef
+FROM _DocumentChngR14 T23 WITH(NOLOCK)
+LEFT OUTER JOIN _Document12 T24 WITH(NOLOCK)
+ON T23._IDRRef = T24._IDRRef
+WHERE (T23._NodeTRef = ? AND T23._NodeRRef = ?) AND T24._Number IS NULL</value>
+  </data>
+</root>

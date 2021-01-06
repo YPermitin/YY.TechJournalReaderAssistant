@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using YY.TechJournalReaderAssistant.Helpers;
 using YY.TechJournalReaderAssistant.Models.Special;
@@ -35,12 +34,10 @@ namespace YY.TechJournalReaderAssistant.Models
             "DESCR",
             "TXT"
         };
-
-        private static readonly Regex _replaceTempTableName = new Regex(@"#tt[\d]+");
-        private static readonly Regex _replaceParameterName = new Regex(@"@P[\d]+");
-
+        
         private string _sqlQueryOnly;
         private string _sqlQueryParametersOnly;
+        private string _sqlQueryHash;
 
         #endregion
 
@@ -102,9 +99,9 @@ namespace YY.TechJournalReaderAssistant.Models
                     string bufferSql = (string)Properties["SQL"].Clone();
                     int endOfQuery = bufferSql.IndexOf("p_0", StringComparison.Ordinal);
                     if (endOfQuery > 0)
-                        _sqlQueryOnly = bufferSql.Substring(0, endOfQuery);
+                        _sqlQueryOnly = bufferSql.Substring(0, endOfQuery).ClearSQLQuery(true, false, false);
                     else
-                        _sqlQueryOnly = bufferSql;
+                        _sqlQueryOnly = bufferSql.ClearSQLQuery(true, false, false);
                 }
 
                 return _sqlQueryOnly;
@@ -133,16 +130,11 @@ namespace YY.TechJournalReaderAssistant.Models
         {
             get
             {
-                if (!string.IsNullOrEmpty(SQLQueryOnly))
+                if (string.IsNullOrEmpty(_sqlQueryHash) && !string.IsNullOrEmpty(SQLQueryOnly))
                 {
-                    string bufferSql = (string)SQLQueryOnly.Clone();
-                    _replaceParameterName.Replace(bufferSql, bufferSql);
-                    _replaceTempTableName.Replace(bufferSql, bufferSql);
-                    bufferSql = bufferSql.Replace(" ", "");
-                    return bufferSql.CreateMD5();
+                    _sqlQueryHash = SQLQueryOnly.GetQueryHash();
                 }
-
-                return null;
+                return _sqlQueryHash;
             }
         }
         public string SDBL => Properties.GetStringValueByKey("SDBL");
