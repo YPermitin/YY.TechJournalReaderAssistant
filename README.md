@@ -9,6 +9,10 @@
 |:-------:|:------:|
 | [![Build status](https://ci.appveyor.com/api/projects/status/leo16jd0ho2u4v0l?svg=true)](https://ci.appveyor.com/project/YPermitin/yy-techjournalreaderassistant) | ![.NET Core](https://github.com/YPermitin/YY.TechJournalReaderAssistant/workflows/.NET%20Core/badge.svg) |
 
+### Code Climate
+
+[![Maintainability](https://api.codeclimate.com/v1/badges/14335adc7ceff752234b/maintainability)](https://codeclimate.com/github/YPermitin/YY.TechJournalReaderAssistant/maintainability)
+
 ## Благодарности
 
 Выражаю большую благодарность **[Алексею Бочкову](https://github.com/alekseybochkov)** как идейному вдохновителю. 
