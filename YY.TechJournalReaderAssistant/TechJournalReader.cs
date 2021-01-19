@@ -32,6 +32,9 @@ namespace YY.TechJournalReaderAssistant
         protected long _eventCount = -1;
         protected TimeZoneInfo _logTimeZoneInfo;
         protected int _readDelayMs = 60000;
+        private string _sourceData;
+        private bool _firstReadForFile = true;
+        private long? _currentStreamPosition;
 
         protected EventData _currentRow;
 
@@ -96,28 +99,38 @@ namespace YY.TechJournalReaderAssistant
 
                 bool newLine = true;
                 DateTime maxLogPeriod = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, _logTimeZoneInfo).AddMilliseconds((-1) * _readDelayMs);
+                _currentStreamPosition = _stream?.GetPosition() ?? 0;
 
                 while (true)
                 {
-                    string sourceData = ReadSourceDataFromStream();
-                    if (sourceData != null)
-                        AddNewLineToSource(sourceData, newLine);
+                    if (_firstReadForFile)
+                    {
+                        _sourceData = _stream.ReadLineWithoutNull();
+                        _firstReadForFile = false;
+                    }
 
-                    if (LogParserTechJournal.ItsEndOfEvent(_stream, sourceData) || sourceData == null)
+                    if (_sourceData == null)
+                    {
+                        NextFile();
+                        output = Read();
+                        break;
+                    }
+
+                    AddNewLineToSource(_sourceData, newLine);
+
+                    long currentStreamPositionBeforeGoAheadRead = _stream?.GetPosition() ?? 0;
+                    if (LogParserTechJournal.ItsEndOfEvent(_stream, CurrentFile, out _sourceData))
                     {
                         _currentFileEventNumber += 1;
+                        _currentStreamPosition = currentStreamPositionBeforeGoAheadRead;
                         string preparedSourceData = _eventSource.ToString();
                         _eventSource.Clear();
 
+                        if (_sourceData == null)
+                            _firstReadForFile = true;
+
                         RaiseBeforeRead(new BeforeReadEventArgs(preparedSourceData, _currentFileEventNumber));
-
-                        if (sourceData == null && preparedSourceData.Length == 0)
-                        {
-                            NextFile();
-                            output = Read();
-                            break;
-                        }
-
+                        
                         try
                         {
                             EventData eventData = ReadRowData(preparedSourceData);
@@ -213,7 +226,7 @@ namespace YY.TechJournalReaderAssistant
             return new TechJournalPosition(
                 _currentFileEventNumber,
                 CurrentFile,
-                GetCurrentFileStreamPosition());
+                _currentStreamPosition ?? 0);
         }
         public void SetCurrentPosition(TechJournalPosition newPosition)
         {
@@ -249,6 +262,8 @@ namespace YY.TechJournalReaderAssistant
 
             _indexCurrentFile = 0;
             UpdateEventLogFilesFromDirectory();
+            _firstReadForFile = true;
+            _currentStreamPosition = null;
             _currentFileEventNumber = 0;
             _currentRow = null;
         }
@@ -263,6 +278,7 @@ namespace YY.TechJournalReaderAssistant
             }
 
             _indexCurrentFile += 1;
+            _firstReadForFile = true;
         }
         public void SetTimeZone(TimeZoneInfo timeZone)
         {
@@ -303,12 +319,6 @@ namespace YY.TechJournalReaderAssistant
                 _eventSource.AppendLine();
                 _eventSource.Append(sourceData);
             }
-        }
-        private string ReadSourceDataFromStream()
-        {
-            string sourceData = _stream.ReadLineWithoutNull();
-            
-            return sourceData;
         }
         private void FindNearestBeginEventPosition(ref bool isCorrectBeginEvent, string currentFilePath, ref long newStreamPosition, int stepSize = 1)
         {
@@ -377,10 +387,6 @@ namespace YY.TechJournalReaderAssistant
         {
             _stream?.SetPosition(position);
         }
-        private long GetCurrentFileStreamPosition()
-        {
-            return _stream?.GetPosition() ?? 0;
-        }
         private long GetEventCount()
         {
             long eventCount = 0;
@@ -440,6 +446,8 @@ namespace YY.TechJournalReaderAssistant
             FileStream fs = new FileStream(_logFilesWithData[fileIndex], FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
             _stream = new StreamReader(fs);
             _stream.SkipLine(linesToSkip);
+
+            _currentStreamPosition = _stream?.GetPosition();
         }
 
         #endregion

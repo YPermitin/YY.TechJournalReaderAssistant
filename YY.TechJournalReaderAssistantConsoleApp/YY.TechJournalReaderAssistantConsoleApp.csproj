@@ -16,10 +16,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ClickHouse.Client" Version="2.2.1.285" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\YY.TechJournalReaderAssistant\YY.TechJournalReaderAssistant.csproj" />
   </ItemGroup>
 
